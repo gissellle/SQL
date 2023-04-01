@@ -1,0 +1,30 @@
+--Create a store database
+
+CREATE TABLE bookstore (id INTEGER PRIMARY KEY, title TEXT, genre TEXT, price INTEGER, popularity INTEGER); 
+
+INSERT INTO bookstore VALUES (1, "The Alchemist", "fiction", 13.89, 82);
+INSERT INTO bookstore VALUES (2, "The Body Keeps Score", "nonfiction", 11.40, 99);
+INSERT INTO bookstore VALUES (3, "The Four Agreements", "self-help", 7.74, 40);
+INSERT INTO bookstore VALUES (4, "Rich Dad Poor Dad", "nonfiction", 7.99, 79);
+INSERT INTO bookstore VALUES (5, "I'm Glad My Mom Died", "nonfiction", 21.99, 78);
+INSERT INTO bookstore VALUES (6, "The Light We Carry", "nonfiction", 22.75, 39);
+INSERT INTO bookstore VALUES (7, "Daisy Jones & the Six", "historical fiction", 17, 77);
+INSERT INTO bookstore VALUES (8, "It Ends With Us", "romance", 12.99, 76);
+INSERT INTO bookstore VALUES (9, "All the Light We Cannot See", "historical fiction", 13.99, 75);
+INSERT INTO bookstore VALUES (10, "Twilight", "fantasy", 13.26, 88);
+
+--Display database ordered by title
+SELECT * FROM bookstore
+ORDER BY title;
+
+-What is the average price of a book?
+SELECT AVG(price) "average book price"
+FROM bookstore;
+
+--What are the 3 most popular books?
+SELECT title, genre, popularity
+FROM bookstore 
+ORDER BY popularity desc
+limit 3;
+
+
