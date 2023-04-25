@@ -1,0 +1,82 @@
+#In this SQL, I am querying a database of multiple tables in it to quantify statistics about populations in different countries around the world. 
+
+#1. What is the average population in a country based on the world population?
+SELECT name, 
+AVG(population) 
+AS avg_population 
+FROM countries;
+
+#2. Which countries have an average popualation greater than or equal to 100,000,000?
+SELECT name, 
+AVG(population) 
+AS avg_population 
+FROM countries
+GROUP BY name 
+HAVING avg_population >= 100000000;
+
+#3. Which country has the highest population compared to other countries?
+SELECT name, 
+MAX(population) 
+AS max_population 
+FROM countries;
+
+#4. Which country has the lowest population compared to other countries?
+SELECT name, 
+MIN(population) 
+AS min_population 
+FROM countries;
+
+#5. What is the total population from all the countries?
+SELECT name, 
+SUM(population) 
+AS sum_population 
+FROM countries;
+
+#6. Which countries have high density and which countries have low density based on their respective populations?
+SELECT name, 
+CASE WHEN density_per_sq_km > 100 
+THEN "high density" 
+ELSE "low denisty" 
+END "type" 
+FROM countries;
+
+#7. What countries have a population greater than 100,000,000 and a denstity greater than 100 per square kilometer?
+SELECT * from countries 
+WHERE population > 100000000 
+AND density_per_sq_km > 100;
+
+#8. What countries have a population less than 100,000,000 and a density greater than 100 per square kilometer?
+SELECT * from countries 
+WHERE population < 100000000 
+AND density_per_sq_km > 100;
+
+#9. What countries have a population less than 100,000,000 and a density less than 100 per square kilometer?
+SELECT * from countries 
+WHERE population < 100000000 
+AND density_per_sq_km < 100;
+
+#10. What countries have a population greater than 100,000,000 or a density greater than 100 per square kilometer?
+SELECT * from countries 
+WHERE population > 100000000 
+OR density_per_sq_km > 100;
+
+#11. What countries have a population greater than 100,000,000 or a density less than 100 per sqaure kilometer?
+SELECT * from countries 
+WHERE population > 100000000 
+OR density_per_sq_km < 100;
+
+#12. What countries have a population less than 100,000,000 or a density less than 100 per square kilometer?
+SELECT * from countries 
+WHERE population < 100000000 
+OR density_per_sq_km < 100;
+
+
+
+
+
+
+
+
+
+
+
