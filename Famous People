@@ -1,0 +1,84 @@
+/* Create table about the people and what they do here */
+
+CREATE table actress (id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name TEXT,
+    last_name TEXT,
+    costar_id INTEGER); 
+
+INSERT INTO actress (first_name, last_name, costar_id)
+    VALUES ("Reese", "Witherspoon", 6);
+INSERT INTO actress (first_name, last_name, costar_id)
+    VALUES ("Amy",  "Poehler", 4);
+INSERT INTO actress (first_name, last_name, costar_id)
+    VALUES ("Florence", "Pugh", 5);
+INSERT INTO actress (first_name, last_name, costar_id)
+    VALUES ("Tina", "Fey", 2);
+INSERT INTO actress (first_name, last_name, costar_id)
+    VALUES ("Emma", "Watson", 3);
+INSERT INTO actress (first_name, last_name, costar_id)
+    VALUES ("Sofia", "Vergara", 1);   
+    
+CREATE table movies (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT,
+    genre TEXT,
+    actress_id INTEGER,
+    year_released INTEGER);
+    
+INSERT INTO movies (title, genre, actress_id, year_released)
+    VALUES ("Little Women", "coming_of_age", 3, 2019);
+INSERT INTO movies (title, genre, actress_id, year_released)
+    VALUES ("Hot Pursuit", "comedy", 1, 2015);
+INSERT INTO movies (title, genre, actress_id, year_released) 
+    VALUES ("Legally Blonde", "comedy", 1, 2001);
+INSERT INTO movies (title, genre, actress_id, year_released)
+    VALUES ("Sisters", "comedy", 2, 2015);
+INSERT INTO movies (title, genre, actress_id, year_released)
+    VALUES ("Mean Girls", "comedy", 2, 2004);
+INSERT INTO movies (title, genre, actress_id, year_released)
+    VALUES ("Sisters", "comedy", 4, 2015);
+INSERT INTO movies (title, genre, actress_id, year_released)  
+    VALUES ("Don't Worry Darling", "drama", 3, 2022); 
+INSERT INTO movies (title, genre, actress_id, year_released)
+    VALUES ("Little Women", "coming_of_age", 5, 2019);
+INSERT INTO movies (title, genre, actress_id, year_released)  
+    VALUES ("Hot Pursuit", "comedy", 6, 2015);
+INSERT INTO movies (title, genre, actress_id, year_released)
+    VALUES ("Mean Girls", "comedy", 4, 2004); 
+
+CREATE table genre (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    genre TEXT);
+
+INSERT INTO genre VALUES (1, "romance");
+INSERT INTO genre VALUES (2, "coming_of_age");
+INSERT INTO genre VALUES (3, "drama");
+INSERT INTO genre VALUES (4, "comedy");
+INSERT INTO genre VALUES (5, "sci-fi");
+
+/* implicit inner join */
+SELECT * FROM movies, actress
+    WHERE movies.actress_id = actress.id;
+    
+/* explicit inner join */
+SELECT actress.first_name, actress.last_name, movies.title, genre
+    FROM actress
+    JOIN movies
+    ON actress.id = movies.actress_id
+    WHERE genre = "drama";
+    
+/* outer join */
+SELECT actress.first_name, actress.last_name, movies.title
+    FROM movies
+    LEFT OUTER JOIN actress
+    ON movies.actress_id = actress.id
+    WHERE movies.title = "Little Women"; 
+    
+SELECT id, first_name, last_name, costar_id
+    FROM actress;
+    
+/* self join */
+SELECT actress.first_name, actress.last_name, costar.first_name as costar_first, costar.last_name as costar_last
+    FROM actress
+    JOIN actress costar
+    ON actress.costar_id = costar.id;
