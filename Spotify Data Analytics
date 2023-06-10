@@ -1,0 +1,13 @@
+##In this project, I downloaded Spotify data from Kaggle and created a table to insert the data into. 
+##I then performed analytics on the data using SQL.
+
+#1. Who are the Top 10 artists on Spotify?
+SELECT artist_name, track_name, popularity
+FROM BIT_DB.Spotifydata
+ORDER BY popularity desc
+LIMIT 5;
+
+#2. What is the average danceability and energy for each artist?
+SELECT artist_name, AVG(danceability), AVG(energy)
+FROM BIT_DB.Spotifydata
+GROUP BY artist_name;
